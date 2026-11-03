@@ -13,6 +13,11 @@ import {
 import { notFound } from 'next/navigation'
 import { getStoryblokApi } from '@/lib/storyblok'
 import { StoryblokStory } from '@storyblok/react/rsc'
+import AppBar from '@/components/AppBar'
+import { brandStyle } from '@/storyblok/brandStyle'
+import Footer from '@/components/Footer'
+import SiteFooter from '@/components/SiteFooter'
+import type { ColorsContent, FooterContent, HeaderContent } from '@/content'
 // Parsing: uncomment the lines below to perform runtime validation of the story content
 // import { parseContent } from '@/content'
 
@@ -81,12 +86,41 @@ export default async function DynamicPage(props: DynamicPageProps) {
   // }
   // story.content = contentResult.value
 
+  const [header, footer, colors] = await Promise.all([
+    getGlobal<HeaderContent>('common/header', bridgeSearchParams),
+    getGlobal<FooterContent>('common/footer', bridgeSearchParams),
+    getGlobal<ColorsContent>('common/colors', bridgeSearchParams),
+  ])
+
+  // The header, footer and colors stories render themselves (with live preview) when opened in the editor.
+  const isGlobalStory = ['header', 'footer', 'colors'].includes(
+    story.content?.component,
+  )
+
   return (
-    <StoryblokStory
-      story={story}
-      bridgeOptions={{
-        resolveRelations,
-      }}
-    />
+    <div style={brandStyle(colors)}>
+      {isGlobalStory ? null : <AppBar header={header} />}
+      <StoryblokStory
+        story={story}
+        bridgeOptions={{
+          resolveRelations,
+        }}
+      />
+      {isGlobalStory ? null : footer ? <SiteFooter footer={footer} /> : <Footer />}
+    </div>
   )
 }
+
+/**
+ * Fetch a global settings story (e.g. `common/header`).
+ * Uses the same version as the current page, so drafts are previewed together.
+ * Returns `undefined` if the story does not exist, so the template defaults are used.
+ */
+const getGlobal = async <T,>(
+  slug: string,
+  bridgeSearchParams: BridgeSearchParams,
+): Promise<T | undefined> =>
+  getStoryblokApi()
+    .get(`cdn/stories/${slug}`, { version: bridgeSearchParams.version })
+    .then((result) => result.data.story?.content as T)
+    .catch(() => undefined)

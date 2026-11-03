@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { storyblokEditable } from '@storyblok/react/rsc'
-import NextImage from 'next/image'
+import StoryblokImage from '../components/StoryblokImage'
 import type { TeamMemberContent } from '../content'
 import { backgroundColor } from './backgroundColorClass'
 
@@ -20,10 +20,9 @@ function TeamMember(props: TeamMemberProps) {
         )}`}
       >
         {props.blok.image ? (
-          <NextImage
+          <StoryblokImage
             className="translate-y-[50px] w-96 h-96 rounded-md object-contain"
-            src={props.blok.image?.filename}
-            alt={props.blok.image?.alt ?? ''}
+            asset={props.blok.image}
             width={368}
             height={384}
           />

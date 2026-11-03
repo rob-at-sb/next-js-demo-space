@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { storyblokEditable } from '@storyblok/react/rsc'
-import NextImage from 'next/image'
+import StoryblokImage from '../components/StoryblokImage'
 import type { CardContent } from '../content'
 import RichTextView from '../components/RichText'
 
@@ -16,10 +16,10 @@ function Card(props: CardProps) {
       className={`flex flex-col justify-start items-start gap-4 bg-white rounded-[20px] p-4 sm:p-6 ${props.className}`}
     >
       {props.blok.icon ? (
-        <NextImage
+        <StoryblokImage
           className="box-content p-2 w-10 h-10 sm:w-[34px] sm:h-[34px]"
-          src={props.blok.icon?.filename}
-          alt={props.blok.icon?.alt ?? ''}
+          asset={props.blok.icon}
+          ratio={1}
           width={34}
           height={34}
         />

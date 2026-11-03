@@ -20,5 +20,12 @@ export const backgroundColor = (backgroundColor: BackgroundColor): string => {
       return 'bg-[#FECCD4]'
     case 'blue':
       return 'bg-[#D9DFF6]'
+    // Brand colors come from the `common/colors` story via CSS variables
+    case 'brandPrimary':
+      return 'bg-[var(--brand-primary)] text-[var(--brand-primary-text)] on-primary'
+    case 'brandSecondary':
+      return 'bg-[var(--brand-secondary)] text-[var(--brand-secondary-text)]'
+    case 'brandLight':
+      return 'bg-[var(--brand-light)] text-[var(--brand-light-text)]'
   }
 }

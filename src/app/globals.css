@@ -39,4 +39,33 @@
   .rich-text a {
     @apply text-blue-600 hover:text-blue-800 underline;
   }
+
+  /* Brand colors. Defaults only; overridden at runtime by the `common/colors` story. */
+  :root {
+    --brand-primary: #1c1917;
+    --brand-primary-text: #ffffff;
+    --brand-secondary: #f5f5f4;
+    --brand-secondary-text: #1c1917;
+    --brand-light: #f5f5f7;
+    --brand-light-text: #1c1917;
+    --brand-accent: #15803d;
+  }
+
+  /* On Brand Primary backgrounds: headings use the secondary color */
+  .on-primary .rich-text h1,
+  .on-primary .rich-text h2 {
+    @apply text-[var(--brand-secondary)] uppercase;
+  }
+
+  .on-primary .rich-text a {
+    @apply text-[var(--brand-primary-text)] hover:text-[var(--brand-secondary)];
+  }
+
+  .rich-text ul {
+    @apply list-disc pl-6 my-4;
+  }
+
+  .rich-text li p {
+    @apply my-1;
+  }
 }

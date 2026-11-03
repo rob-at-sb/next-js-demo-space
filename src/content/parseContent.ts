@@ -63,6 +63,9 @@ const parseBackgroundColor = withDefault<BackgroundColor>(
     equals('green'),
     equals('pink'),
     equals('blue'),
+    equals('brandPrimary'),
+    equals('brandSecondary'),
+    equals('brandLight'),
   ),
   'white',
 )
@@ -213,5 +216,10 @@ export const parseButtonContent = object<ButtonContent>({
   _editable: optional(parseString),
   text: parseString,
   link: withDefault(parseLinkContent, undefined),
-  color: withDefault(oneOf(equals('primary'), equals('secondary')), 'primary'),
+  color: withDefault(oneOf(
+      equals('primary'),
+      equals('secondary'),
+      equals('brandPrimary'),
+      equals('brandSecondary'),
+    ), 'primary'),
 })
