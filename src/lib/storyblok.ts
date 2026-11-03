@@ -7,6 +7,15 @@ import Hero from '../storyblok/Hero'
 import Tabs from '../storyblok/Tabs'
 import Card from '../storyblok/Card'
 import Button from '../storyblok/Button'
+import Header from '../storyblok/Header'
+import Colors from '../storyblok/Colors'
+import VideoSection from '../storyblok/VideoSection'
+import ImageBanner from '../storyblok/ImageBanner'
+import ServiceCards from '../storyblok/ServiceCards'
+import ServiceCard from '../storyblok/ServiceCard'
+import FooterStory from '../storyblok/Footer'
+import FeatureCards from '../storyblok/FeatureCards'
+import FeatureCard from '../storyblok/FeatureCard'
 import { apiPlugin, storyblokInit } from '@storyblok/react/rsc'
 
 export const getStoryblokApi = storyblokInit({
@@ -22,6 +31,15 @@ export const getStoryblokApi = storyblokInit({
     hero: Hero,
     tabs: Tabs,
     button: Button,
+    header: Header,
+    colors: Colors,
+    videoSection: VideoSection,
+    imageBanner: ImageBanner,
+    serviceCards: ServiceCards,
+    serviceCard: ServiceCard,
+    footer: FooterStory,
+    featureCards: FeatureCards,
+    featureCard: FeatureCard,
   },
   apiOptions: {
     /** Set the correct region for your space. Learn more: https:/www.storyblok.com/docs/packages/storyblok-js#example-region-parameter */

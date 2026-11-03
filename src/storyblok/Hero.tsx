@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { storyblokEditable } from '@storyblok/react/rsc'
-import NextImage from 'next/image'
+import StoryblokImage from '../components/StoryblokImage'
 import type { HeroContent } from '../content'
 import RichTextView from '../components/RichText'
 import { backgroundColor } from './backgroundColorClass'
@@ -74,12 +74,13 @@ function Hero(props: HeroProps) {
                 : 'rounded-none max-h-[100%] min-h-[40vw] md:min-h-[100%]'
             } `}
           >
-            <NextImage
-              src={props.blok.image?.filename}
-              alt={props.blok.image?.alt ?? ''}
-              width={1200}
-              height={650}
-              className={`absolute h-full w-full object-cover`}
+            <StoryblokImage
+              asset={props.blok.image}
+              ratio={6 / 7}
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              priority
+              className="object-cover"
             />
           </div>
         ) : null}

@@ -33,7 +33,7 @@ function Tabs(props: TabsProps) {
                 onClick={(_event) => setCurrentTabUid(tab._uid)}
                 className={`flex-1 py-2 text-sm sm:py-3 sm:text-base md:py-4 ${
                   currentTabUid === tab._uid
-                    ? 'bg-stone-800 text-white'
+                    ? 'bg-[var(--brand-primary)] text-[var(--brand-primary-text)]'
                     : 'bg-transparent text-stone-800 '
                 } rounded-lg flex justify-center items-center gap-0.5`}
               >

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { storyblokEditable } from '@storyblok/react/rsc'
-import NextImage from 'next/image'
+import StoryblokImage from '../components/StoryblokImage'
 import type { TestimonialContent } from '../content'
 import { backgroundColor } from './backgroundColorClass'
 
@@ -24,10 +24,10 @@ function Testimonial(props: TestimonialProps) {
               props.blok.imageBackgroundColor,
             )}`}
           >
-            <NextImage
-              className="object-cover w-full h-full "
-              src={props.blok.image?.filename}
-              alt={props.blok.image?.alt ?? ''}
+            <StoryblokImage
+              className="object-cover w-full h-full"
+              asset={props.blok.image}
+              ratio={1}
               width={100}
               height={100}
             />
